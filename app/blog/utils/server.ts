@@ -1,19 +1,22 @@
 import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 import type { Options } from 'rehype-pretty-code';
+import type { Pluggable, Plugin } from 'unified';
 
 const prettyCodeOptions: Partial<Options> = {
   theme: 'github-dark',
   keepBackground: true,
 };
 
+// Create a properly typed plugin
+const prettyCodePlugin: Pluggable = [rehypePrettyCode, prettyCodeOptions] as Plugin;
+
 export async function getMDXContent(source: string) {
   const { content, frontmatter } = await compileMDX({
     source,
     options: {
       mdxOptions: {
-        // @ts-expect-error - Types are not perfectly aligned
-        rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+        rehypePlugins: [prettyCodePlugin],
         parseFrontmatter: true,
       },
     },
