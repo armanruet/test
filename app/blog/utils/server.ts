@@ -1,7 +1,7 @@
 import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 import type { Options } from 'rehype-pretty-code';
-import type { Plugin, Transformer } from 'unified';
+import type { CompileOptions } from '@mdx-js/mdx';
 import type { Root } from 'hast';
 
 const prettyCodeOptions: Partial<Options> = {
@@ -10,16 +10,17 @@ const prettyCodeOptions: Partial<Options> = {
 };
 
 export async function getMDXContent(source: string) {
-  // Cast the rehype plugin to the correct type
-  const rehypePrettyCodePlugin = rehypePrettyCode as unknown as Plugin<[Partial<Options>], Root>;
+  // Define rehype plugins with proper MDX types
+  const rehypePlugins: CompileOptions['rehypePlugins'] = [
+    // @ts-expect-error - Types are mismatched but runtime behavior is correct
+    [rehypePrettyCode, prettyCodeOptions]
+  ];
 
   const { content, frontmatter } = await compileMDX({
     source,
     options: {
       mdxOptions: {
-        rehypePlugins: [
-          [rehypePrettyCodePlugin, prettyCodeOptions]
-        ],
+        rehypePlugins,
         parseFrontmatter: true,
       },
     },
