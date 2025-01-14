@@ -2,7 +2,7 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 import type { Options } from 'rehype-pretty-code';
 import type { MDXRemoteProps } from 'next-mdx-remote';
-import type { Pluggable, Plugin, Transformer } from 'unified';
+import type { Transformer } from 'unified';
 import type { Root } from 'hast';
 
 const prettyCodeOptions: Partial<Options> = {
@@ -11,17 +11,17 @@ const prettyCodeOptions: Partial<Options> = {
 };
 
 export async function getMDXContent(source: string) {
-  type MDXOptions = NonNullable<MDXRemoteProps['options']>;
-  
-  const rehypePlugins: Array<[Plugin<[Options?], Root, Root>, Options?]> = [
-    [rehypePrettyCode, prettyCodeOptions]
-  ];
+  // Define the transformer type for rehype plugins
+  type RehypePlugin = (options?: any) => Transformer<Root>;
 
   const { content, frontmatter } = await compileMDX({
     source,
     options: {
       mdxOptions: {
-        rehypePlugins,
+        // Cast the rehype plugin to the correct transformer type
+        rehypePlugins: [
+          [rehypePrettyCode as RehypePlugin, prettyCodeOptions]
+        ],
         parseFrontmatter: true,
       },
     },
