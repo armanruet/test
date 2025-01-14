@@ -1,5 +1,5 @@
 /* Base styles and variables */
-:root {
+.root {
   --body-color: #4f4f4f;
   --heading-color: #292929;
   --meta-color: #666;
