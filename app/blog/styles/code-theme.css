@@ -1,0 +1,415 @@
+/* PrismJS Theme */
+code[class*="language-"],
+pre[class*="language-"] {
+  @apply text-gray-800 dark:text-gray-100
+         text-[15px] leading-[1.5]
+         font-mono
+         break-normal
+         whitespace-pre;
+  direction: ltr;
+  word-spacing: normal;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Code block styling */
+pre[class*="language-"] {
+  @apply p-6 my-8 mx-0
+         overflow-auto
+         rounded-xl
+         relative
+         bg-gray-50/80 dark:bg-gray-900/80
+         border dark:border-gray-800
+         shadow-lg hover:shadow-xl
+         transition-all duration-300
+         backdrop-blur-sm;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  @apply p-1 rounded-md
+         whitespace-normal
+         bg-gray-100 dark:bg-gray-800
+         border border-gray-200 dark:border-gray-700;
+}
+
+/* Tokens */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-gray-500 dark:text-gray-400;
+  font-style: italic;
+}
+
+.token.namespace {
+  @apply opacity-70;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  @apply text-pink-600 dark:text-pink-400;
+}
+
+.token.boolean,
+.token.number {
+  @apply text-orange-600 dark:text-orange-400;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  @apply text-green-600 dark:text-green-400;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  @apply text-sky-600 dark:text-sky-400;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  @apply text-yellow-600 dark:text-yellow-400;
+}
+
+.token.keyword {
+  @apply text-purple-600 dark:text-purple-400 font-semibold;
+}
+
+.token.regex,
+.token.important {
+  @apply text-red-600 dark:text-red-400;
+}
+
+.token.important,
+.token.bold {
+  @apply font-bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  @apply cursor-help;
+}
+
+/* Python-specific */
+.language-python .token.decorator,
+.language-py .token.decorator {
+  @apply text-fuchsia-600 dark:text-fuchsia-400;
+}
+
+.language-python .token.builtin,
+.language-py .token.builtin {
+  @apply text-teal-600 dark:text-teal-400;
+}
+
+.language-python .token.string-interpolation,
+.language-py .token.string-interpolation {
+  @apply text-cyan-600 dark:text-cyan-400;
+}
+
+.language-python .token.parameter,
+.language-py .token.parameter {
+  @apply text-rose-600 dark:text-rose-400;
+  font-style: italic;
+}
+
+/* Line Numbers */
+pre[class*="language-"].line-numbers {
+  @apply relative pl-16;
+}
+
+.line-numbers .line-numbers-rows {
+  @apply absolute top-6 left-6
+         w-12 text-right
+         select-none
+         border-r border-gray-300 dark:border-gray-600;
+}
+
+.line-numbers-rows > span {
+  @apply block text-gray-400 dark:text-gray-500;
+}
+
+/* Show Language */
+div.code-toolbar > .toolbar {
+  @apply absolute right-3 top-3
+         opacity-0 transition-opacity duration-200;
+}
+
+div.code-toolbar:hover > .toolbar {
+  @apply opacity-100;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > button {
+  @apply px-3 py-1.5 rounded-md
+         text-xs font-mono font-medium
+         bg-blue-100/80 dark:bg-blue-900/30
+         text-blue-800 dark:text-blue-200
+         border border-blue-200 dark:border-blue-800
+         shadow-sm backdrop-blur-sm
+         transition-all duration-200
+         hover:bg-blue-200 dark:hover:bg-blue-800/30;
+}
+
+/* Match Braces */
+.token.punctuation.brace-hover,
+.token.punctuation.brace-selected {
+  @apply outline-none rounded-sm
+         bg-gray-300/50 dark:bg-gray-700/50;
+}
+
+/* Line Highlight */
+.line-highlight {
+  @apply absolute left-0 right-0
+         bg-blue-500/10 dark:bg-blue-500/20
+         pointer-events-none;
+}
+
+/* Command Line */
+.command-line-prompt {
+  @apply border-r border-gray-300 dark:border-gray-600
+         opacity-75;
+}
+
+.command-line-prompt > span:before {
+  @apply text-gray-400 dark:text-gray-500;
+}
+
+/* Prisma-inspired Theme */
+code[class*="language-"],
+pre[class*="language-"] {
+  @apply text-slate-900 dark:text-slate-50
+         text-[15px] leading-[1.6]
+         font-mono
+         break-normal
+         whitespace-pre;
+  direction: ltr;
+  word-spacing: normal;
+  tab-size: 2;
+  hyphens: none;
+}
+
+/* Code block styling - Prisma-like */
+pre[class*="language-"] {
+  @apply p-6 my-8 mx-0
+         overflow-auto
+         rounded-lg
+         relative
+         bg-slate-50/90 dark:bg-slate-900/90
+         border border-slate-200 dark:border-slate-800
+         shadow-xl
+         transition-all duration-300
+         backdrop-blur-sm;
+}
+
+/* Prisma-specific tokens */
+.token.comment {
+  @apply text-slate-400 dark:text-slate-500;
+  font-style: italic;
+}
+
+.token.keyword {
+  @apply text-fuchsia-500 dark:text-fuchsia-400 font-medium;
+}
+
+.token.string {
+  @apply text-emerald-500 dark:text-emerald-400;
+}
+
+.token.number {
+  @apply text-amber-500 dark:text-amber-400;
+}
+
+.token.function {
+  @apply text-blue-500 dark:text-blue-400 font-medium;
+}
+
+.token.constant {
+  @apply text-violet-500 dark:text-violet-400;
+}
+
+.token.boolean {
+  @apply text-rose-500 dark:text-rose-400 font-medium;
+}
+
+.token.operator {
+  @apply text-slate-500 dark:text-slate-400;
+}
+
+.token.punctuation {
+  @apply text-slate-500 dark:text-slate-400;
+}
+
+/* Prisma Schema specific */
+.language-prisma .token.type {
+  @apply text-cyan-500 dark:text-cyan-400 font-medium;
+}
+
+.language-prisma .token.decorator {
+  @apply text-indigo-500 dark:text-indigo-400;
+}
+
+.language-prisma .token.field {
+  @apply text-slate-700 dark:text-slate-300;
+}
+
+/* Language badge - Prisma style */
+.code-toolbar > .toolbar {
+  @apply absolute right-3 top-3
+         opacity-0 group-hover:opacity-100
+         transition-opacity duration-200;
+}
+
+.code-toolbar > .toolbar > .toolbar-item > button {
+  @apply px-2 py-1 rounded-md text-xs
+         font-mono font-medium
+         bg-slate-100 dark:bg-slate-800
+         text-slate-600 dark:text-slate-300
+         border border-slate-200 dark:border-slate-700
+         hover:bg-slate-200 dark:hover:bg-slate-700
+         transition-colors duration-200;
+}
+
+/* Line numbers - Prisma style */
+.line-numbers .line-numbers-rows {
+  @apply text-slate-300 dark:text-slate-600
+         border-r border-slate-200 dark:border-slate-700;
+}
+
+/* Line highlight - Prisma style */
+.line-highlight {
+  @apply bg-slate-200/50 dark:bg-slate-800/50
+         border-l-2 border-fuchsia-500;
+}
+
+/* Inline code - Prisma style */
+:not(pre) > code {
+  @apply px-1.5 py-0.5 rounded-md
+         text-[0.9em]
+         bg-slate-100 dark:bg-slate-800
+         text-fuchsia-500 dark:text-fuchsia-400
+         border border-slate-200 dark:border-slate-700;
+}
+
+/* Scrollbar - Prisma style */
+pre::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+pre::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-600
+         rounded-full
+         hover:bg-slate-400 dark:hover:bg-slate-500
+         transition-colors duration-200;
+}
+
+/* Copy button - Prisma style */
+.copy-button {
+  @apply absolute right-3 top-3
+         p-2 rounded-md
+         opacity-0 group-hover:opacity-100
+         text-slate-500 dark:text-slate-400
+         hover:text-slate-700 dark:hover:text-slate-200
+         bg-slate-100/80 dark:bg-slate-800/80
+         hover:bg-slate-200 dark:hover:bg-slate-700
+         border border-slate-200 dark:border-slate-700
+         transition-all duration-200;
+}
+
+/* Python-specific syntax highlighting */
+.language-python,
+.language-py {
+  @apply bg-slate-50/90 dark:bg-slate-900/90;
+}
+
+.language-python .token.keyword,
+.language-py .token.keyword {
+  @apply text-blue-600 dark:text-blue-400 font-semibold;
+}
+
+.language-python .token.function,
+.language-py .token.function {
+  @apply text-violet-600 dark:text-violet-400 font-medium;
+}
+
+.language-python .token.string,
+.language-py .token.string {
+  @apply text-emerald-600 dark:text-emerald-400;
+}
+
+.language-python .token.number,
+.language-py .token.number {
+  @apply text-orange-600 dark:text-orange-400;
+}
+
+.language-python .token.comment,
+.language-py .token.comment {
+  @apply text-slate-400 dark:text-slate-500;
+  font-style: italic;
+}
+
+/* Python imports */
+.language-python .token.imports,
+.language-py .token.imports,
+.language-python .token.from,
+.language-py .token.from,
+.language-python .token.import,
+.language-py .token.import {
+  @apply text-cyan-600 dark:text-cyan-400 font-medium;
+}
+
+/* Python method calls */
+.language-python .token.method,
+.language-py .token.method,
+.language-python .token.property,
+.language-py .token.property {
+  @apply text-sky-600 dark:text-sky-400;
+}
+
+/* Python operators */
+.language-python .token.operator,
+.language-py .token.operator {
+  @apply text-slate-600 dark:text-slate-300;
+}
+
+/* Python punctuation */
+.language-python .token.punctuation,
+.language-py .token.punctuation {
+  @apply text-slate-500 dark:text-slate-400;
+}
+
+/* Python variables */
+.language-python .token.variable,
+.language-py .token.variable {
+  @apply text-rose-600 dark:text-rose-400;
+}
+
+/* Python parameters */
+.language-python .token.parameter,
+.language-py .token.parameter {
+  @apply text-amber-600 dark:text-amber-400;
+}
+
+/* Python class names */
+.language-python .token.class-name,
+.language-py .token.class-name {
+  @apply text-yellow-600 dark:text-yellow-400 font-medium;
+} 

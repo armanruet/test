@@ -1,0 +1,669 @@
+---
+title: 'How to merge an existing git repository into Turborepo'
+publishedAt: '2024-11-26'
+summary: 'A guide on how to merge any existing app or library into Turborepo.'
+
+tags: ['NEXT-JS', 'GUIDE', 'PYTHON', 'PRODUCTIVITY']
+---
+
+---
+
+!https://cdn-images-1.medium.com/max/1600/1*vyyhREtewns5u3PQMwtN9A.png
+
+### 11 Python Libraries That Will 10x Your Development Speed in 2024: A Data-Driven Analysis
+
+### 11 Game-Changing Python Libraries You’ve Been Missing in 2024
+
+“**Another article about underrated Python libraries**?” I hear you ask. Fair question.
+
+But this isn’t just another list scraped from PyPI’s newest uploads or GitHub’s trending page. This is the result of a data-driven investigation that started with a simple question: Which Python libraries are genuinely transforming codebases while flying under the radar?
+
+> “I don’t always find hidden gems in Python, but when I do, they completely transform my coding workflow.”
+
+This was a comment I stumbled upon in a Reddit thread that sparked a six-month journey into Python’s lesser-known libraries. What started as a casual exploration turned into a data-driven quest to uncover truly underrated tools that deserve more attention.
+
+### Our Selection Process:
+
+!https://cdn-images-1.medium.com/max/1600/1*k2LUaILjwZHvv406_iUW8Q.png
+
+Image by author
+
+### Phase 1: Initial Screening (100+ Libraries)
+
+Analyzed GitHub metrics, Stack Overflow activity, and innovative solutions for common problems.
+
+### Phase 2: Detailed Analysis (50 Libraries)
+
+!https://cdn-images-1.medium.com/max/1600/1*NtuFmXihH4VCOL_vM824Fg.png
+
+Image by author using Napkin.ai
+
+### Phase 3: Real-World Validation (Optional)
+
+!https://cdn-images-1.medium.com/max/1600/1*IyjbHt0DtZEjsQe-UbcY4A.png
+
+Image by author
+
+### Phase 4: Final Selection (11 Winners)
+
+Libraries were scored on a 100-point scale:
+
+- Innovation (40 points)
+- Efficiency Impact (30 points)
+- Adoption Gap (20 points)
+- Documentation Quality (10 points)
+
+Only libraries scoring above 80 points made the final cut, ensuring each recommendation delivers exceptional value while remaining relatively unknown to many Python developers.
+
+Let’s explore each library in detail.
+
+### 1. Rich: The CLI Beautifier You Didn’t Know You Needed
+
+### Why It’s Underrated
+
+Most developers still rely on basic `print` statements, unaware that Rich can transform their terminal output from plain text to professional-grade interfaces with minimal effort.
+
+### What Makes It Special
+
+- 🎨 Beautiful formatting with 16.7 million colors
+- 📊 Built-in support for tables, progress bars, and markdown
+- 🔍 Syntax highlighting for 300+ programming languages
+- 📝 Automatic text wrapping and alignment
+
+### Practical Example
+
+```
+from rich import print
+from rich.table import Table
+from rich.progress import track
+import time
+# Create a fancy table
+table = Table(title="Project Statistics")
+table.add_column("Module", style="cyan")
+table.add_column("Coverage", style="magenta")
+table.add_column("Status", style="green")
+table.add_row("Core", "87%", "✅")
+table.add_row("API", "92%", "✅")
+table.add_row("UI", "76%", "⚠️")
+print(table)
+# Add a progress bar
+for step in track(range(100), description="Processing..."):
+    time.sleep(0.01)
+```
+
+### Advanced Features People Miss
+
+- Custom styling rules
+- Live logging with `Rich Handler`
+- Console capture and replay
+- Layout management for complex CLI apps
+
+### Performance Considerations
+
+- Memory usage increases with complex formatting
+- Consider disabling colors for automated scripts
+- Use `Console(record=True)` judiciously
+
+!https://cdn-images-1.medium.com/max/1600/1*Fq_j8nFMpcrFH_hJ4NBwgg.png
+
+Rich vs Alternative
+
+### 2. Arrow: Time Handling Made Human-Friendly
+
+### Why It’s Underrated
+
+While Python’s datetime module is powerful, Arrow simplifies time manipulation with an intuitive API that feels natural to use. Many developers stick with datetime out of habit, missing out on Arrow’s elegant solutions.
+
+### What Makes It Special
+
+- 🌍 Timezone-aware by default
+- 🔄 Fluent interface for date manipulations
+- 🌐 Built-in internationalization
+- 🎯 Human-readable time deltas
+
+### Practical Example
+
+```
+import arrow
+# Create a time object
+now = arrow.now()
+# Simple date manipulation
+future = now.shift(days=3, hours=2)
+past = now.shift(weeks=-1)
+# Human-readable differences
+print(past.humanize())  # outputs: "a week ago"
+# Timezone conversion
+tokyo_time = now.to('Asia/Tokyo')
+paris_time = tokyo_time.to('Europe/Paris')
+# Format dates easily
+print(now.format('YYYY-MM-DD HH:mm'))
+```
+
+### Advanced Features People Miss
+
+- Calendar-aware operations (e.g., last Sunday of the month)
+- Range generation for time intervals
+- Built-in parsing of common date formats
+- Microsecond precision when needed
+
+### Performance Considerations
+
+- Arrow objects are immutable, creating new objects for each operation
+- Batch operations might be slower compared to raw datetime
+- Time zone database lookups can impact performance
+
+!https://cdn-images-1.medium.com/max/1600/1*jsBXrlajtyR4GT_whEDTeQ.png
+
+Arrow vs Alternatives
+
+### 3. Hydra: Configuration Management Reimagined
+
+### Why It’s Underrated
+
+Configuration management is often an afterthought, handled through basic JSON or YAML files. Hydra brings structure and flexibility to this crucial aspect of application development.
+
+### What Makes It Special
+
+- 🔧 Dynamic configuration composition
+- 📦 Built-in config versioning
+- 🔄 Command-line overrides
+- 📊 Hierarchical configuration
+
+### Practical Example
+
+```
+# config.yaml
+defaults:
+  - db: mysql
+  - environment: production
+
+# @hydra.main(config_path="conf", config_name="config")
+def my_app(cfg):
+    print(f"Database: {cfg.db.host}")
+    print(f"Environment: {cfg.environment.name}")
+
+# Run with: python my_app.py db=postgres environment=development
+```
+
+### Advanced Features
+
+- Configuration search paths
+- Runtime config composition
+- Multirun for parameter sweeps
+- Config store API
+
+### Performance Impact
+
+- Minimal runtime overhead
+- Memory-efficient configuration handling
+- Lazy loading of configurations
+
+### 4. Shapely: The Geometric Toolkit You Never Knew You Needed
+
+### Why It’s Underrated
+
+Geometric operations are often seen as niche, but Shapely’s capabilities extend far beyond traditional GIS applications. Many developers write complex geometric calculations from scratch, unaware of Shapely’s powerful features.
+
+### What Makes It Special
+
+- 🔷 Comprehensive geometric operations
+- 🔄 Efficient spatial algorithms
+- 📏 Precise distance calculations
+- 🎯 Point-in-polygon testing
+
+### Practical Example
+
+```
+from shapely.geometry import Point, Polygon
+
+# Create a polygon (e.g., a delivery zone)
+zone = Polygon([(0, 0), (1, 0), (1, 1), (0, 1)])
+
+# Check if a point is in the zone
+delivery_point = Point(0.5, 0.5)
+is_in_zone = zone.contains(delivery_point)
+
+# Calculate the area
+area = zone.area
+
+# Create a buffer (e.g., 500m radius around a point)
+store_location = Point(0, 0)
+delivery_radius = store_location.buffer(0.5)
+
+# Find intersection of two areas
+overlap = zone.intersection(delivery_radius)
+```
+
+### Advanced Features People Miss
+
+- Geometric predicates (touches, contains, etc.)
+- Affine transformations
+- Geometry simplification
+- Geometric operations preserving Z coordinates
+
+Performance Considerations
+
+- Use prepared geometries for repeated operations
+- Consider using shapely.STRtree for spatial indexing
+- Memory usage grows with geometry complexity
+- Buffer operations can be computationally expensive
+
+!https://cdn-images-1.medium.com/max/1600/1*iThj_cfOS-lC4VhD_sTD5A.png
+
+Shapely vs Alternatives
+
+### 5. Poetry: Package Management Done Right
+
+### Why It’s Underrated
+
+Despite solving many common dependency management headaches, Poetry is often overlooked in favor of traditional tools like pip and requirements.txt.
+
+### What Makes It Special
+
+- 📦 Dependency resolution out of the box
+- 🔒 Reproducible builds
+- 🚀 Virtual environment management
+- 📝 Project metadata handling
+
+### Practical Example
+
+```
+# Initialize a new project
+poetry new my-project
+
+# Add dependencies
+poetry add requests pandas
+
+# Install dependencies
+poetry install
+
+# Run a script
+poetry run python my_script.py
+
+# Build and publish
+poetry build
+poetry publish
+```
+
+### Advanced Features
+
+- Custom PyPI repositories
+- Plugin system
+- Build system integration
+- Environment management
+
+### Performance Impact
+
+- Faster dependency resolution than pip
+- Efficient caching of packages
+- Parallel downloads
+
+### 6. Pydantic: Data Validation That Makes Sense
+
+### Why It’s Underrated
+
+While gaining popularity, Pydantic is still underutilized in many Python projects where data validation is handled through manual checks or less efficient methods.
+
+### What Makes It Special
+
+- 🔍 Runtime type checking
+- 🚀 Automatic data parsing
+- ⚡ High performance
+- 📝 Self-documenting models
+
+### Practical Example
+
+```
+from pydantic import BaseModel, EmailStr, validator
+from typing import List, Optional
+
+class User(BaseModel):
+    username: str
+    email: EmailStr
+    age: int
+    tags: List[str] = []
+    profile: Optional[dict] = None
+
+    @validator('age')
+    def validate_age(cls, v):
+        if v < 0:
+            raise ValueError('Age must be positive')
+        return v
+
+# This will work
+user = User(
+    username="johndoe",
+    email="john@example.com",
+    age=25
+)
+
+# This will raise a validation error
+user = User(
+    username="johndoe",
+    email="invalid-email",
+    age=-5
+)
+```
+
+### Advanced Features People Miss
+
+- Custom validation decorators
+- JSON Schema generation
+- Complex type validation
+- Field aliases and computed fields
+
+### Performance Considerations
+
+- Model creation overhead
+- Validation impact on large datasets
+- Memory usage with nested models
+
+### 7. Streamlit: Web Apps at the Speed of Thought
+
+### Why It’s Underrated
+
+Many developers assume they need traditional web frameworks for data visualization apps, overlooking Streamlit’s powerful simplicity.
+
+### What Makes It Special
+
+- 🎨 Instant web interfaces
+- 📊 Built-in data visualization
+- 🔄 Automatic live reloading
+- 📱 Responsive layouts
+
+### Practical Example
+
+```
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
+# Add a title
+st.title('Data Explorer')
+
+# File uploader
+uploaded_file = st.file_uploader("Choose a CSV file")
+
+if uploaded_file:
+    # Load data
+    df = pd.read_csv(uploaded_file)
+
+    # Show basic stats
+    st.write("Data Overview")
+    st.dataframe(df.describe())
+
+    # Create interactive plot
+    fig = px.scatter(df, x='column1', y='column2')
+    st.plotly_chart(fig)
+
+    # Add interactive widgets
+    if st.button('Show correlation matrix'):
+        st.write(df.corr())
+```
+
+### Advanced Features
+
+- Session state management
+- Custom components
+- Caching mechanisms
+- Authentication handling
+
+### Performance Tips
+
+- Use st.cache for expensive computations
+- Batch updates for real-time data
+- Optimize data loading patterns
+
+### 8. Faker: Beyond Test Data Generation
+
+### Why It’s Underrated
+
+Many developers still create test data manually or use basic random generators, missing out on Faker’s rich ecosystem of realistic data providers.
+
+### What Makes It Special
+
+- 🌍 Localization support
+- 🎲 Consistent random data
+- 📚 Rich provider ecosystem
+- 🔄 Custom provider support
+
+### Practical Example
+
+```
+from faker import Faker
+fake = Faker()
+
+# Create a user profile
+def generate_user():
+    return {
+        "name": fake.name(),
+        "email": fake.email(),
+        "address": fake.address(),
+        "job": fake.job(),
+        "company": fake.company(),
+        "credit_card": fake.credit_card_number(seed=42)
+    }
+
+# Generate multiple users
+users = [generate_user() for _ in range(10)]
+
+# Use specific locales
+fake_fr = Faker('fr_FR')
+french_user = {
+    "name": fake_fr.name(),
+    "address": fake_fr.address()
+}
+
+# Create custom providers
+class CustomProvider:
+    def custom_value(self):
+        return fake.random_element(['A', 'B', 'C'])
+
+fake.add_provider(CustomProvider)
+```
+
+### Advanced Features
+
+- Seeding for reproducible data
+- Custom provider creation
+- Multiple locale support
+- Unique value generation
+
+### Performance Tips
+
+- Use `Faker.unique` judiciously
+- Cache provider instances
+- Batch generation strategies
+
+### 9. Loguru: Logging Made Intuitive
+
+### Why It’s Underrated
+
+While Python’s built-in logging is powerful, Loguru makes logging so simple and intuitive that it should be the go-to choice for most projects.
+
+### What Makes It Special
+
+- 🎯 Zero configuration
+- 🌈 Automatic color formatting
+- 📁 Rotation handling
+- 🔍 Exception tracking
+
+### Practical Example
+
+```
+from loguru import logger
+
+# Basic logging
+logger.debug("Debug message")
+logger.info("Info message")
+logger.warning("Warning message")
+logger.error("Error message")
+
+# Configure output file with rotation
+logger.add("app.log", rotation="500 MB")
+
+# Exception tracking
+@logger.catch
+def dangerous_function():
+    raise ValueError("Something went wrong!")
+
+# Structured logging
+logger.info("User {user} logged in from {ip}", user="john", ip="192.168.1.1")
+
+# Context manager
+with logger.catch():
+    dangerous_function()
+```
+
+### Advanced Features
+
+- Custom log levels
+- Asynchronous logging
+- Structured logging
+- Exception handling
+
+### Performance Considerations
+
+- Log rotation impact
+- Asyncio integration
+- Memory usage with large log files
+
+### 10. Psutil: System Monitoring Made Simple
+
+### Why It’s Underrated
+
+Many developers resort to OS-specific commands or complex system calls when Psutil could provide a clean, cross-platform solution for system monitoring.
+
+### What Makes It Special
+
+- 🖥️ Cross-platform compatibility
+- 📊 Comprehensive system metrics
+- 🔄 Process management
+- 📈 Resource tracking
+
+### Practical Example
+
+```
+import psutil
+
+# CPU Information
+cpu_percent = psutil.cpu_percent(interval=1, percpu=True)
+cpu_freq = psutil.cpu_freq()
+
+# Memory Usage
+memory = psutil.virtual_memory()
+print(f"Total: {memory.total / (1024**3):.2f} GB")
+print(f"Available: {memory.available / (1024**3):.2f} GB")
+print(f"Percent used: {memory.percent}%")
+
+# Disk Usage
+disk = psutil.disk_usage('/')
+print(f"Total: {disk.total / (1024**3):.2f} GB")
+print(f"Free: {disk.free / (1024**3):.2f} GB")
+
+# Process Management
+for proc in psutil.process_iter(['pid', 'name', 'cpu_percent']):
+    print(proc.info)
+
+# Network Information
+net_io = psutil.net_io_counters()
+print(f"Bytes sent: {net_io.bytes_sent}")
+print(f"Bytes received: {net_io.bytes_recv}")
+```
+
+### Advanced Features
+
+- Process priority management
+- Network connections tracking
+- Battery information
+- Sensors reading (temperature, fans)
+
+### Performance Considerations
+
+- Caching system calls
+- Process iteration efficiency
+- Memory usage in large systems
+
+### 11. Icecream: Debugging Reinvented
+
+### Why It’s Underrated
+
+While print debugging is universal, Icecream transforms it from a basic tool into a powerful debugging aid that many developers overlook.
+
+### What Makes It Special
+
+- 🎯 Automatic variable inspection
+- 📍 Expression evaluation
+- 🔍 Function call tracing
+- 🎨 Colorized output
+
+### Practical Example
+
+```
+from icecream import ic
+
+# Simple variable inspection
+x = 42
+ic(x)  # ic| x: 42
+
+# Expression evaluation
+ic(x + 100)  # ic| x + 100: 142
+
+# Function debugging
+@ic
+def complex_calculation(a, b):
+    result = a * b + sum([1, 2, 3])
+    ic(result)
+    return result
+
+# Multiple variables
+y = "test"
+z = [1, 2, 3]
+ic(x, y, z)  # ic| x: 42, y: 'test', z: [1, 2, 3]
+
+# Conditional debugging
+ic.configureOutput(includeContext=True)
+ic.disable()  # Turn off debug prints
+ic.enable()   # Turn them back on
+```
+
+### Advanced Features
+
+- Custom output formats
+- Context information
+- Prefix customization
+- Output redirection
+
+### Performance Impact
+
+- Minimal overhead when disabled
+- Context capturing cost
+- Memory usage in loop debugging
+
+### Conclusion
+
+These 11 libraries represent some of Python’s hidden gems, each solving specific problems elegantly and efficiently. While they might not all be household names, they can significantly improve your development workflow and code quality.
+
+Key takeaways:
+
+1. Rich and Loguru modernize CLI and logging
+2. Arrow and Pydantic make data handling safer
+3. Poetry and Hydra improve project management
+4. Streamlit and Faker accelerate development
+5. Psutil and Icecream enhance debugging
+
+Remember, the best library is the one that fits your specific needs. Don’t be afraid to explore these alternatives to traditional solutions — they might just become essential tools in your Python toolkit.
+
+What’s your experience with these libraries? Have you discovered other hidden gems in the Python ecosystem? Share your thoughts in the comments below!
+
+### Conclusion
+
+These libraries represent just a fraction of Python’s hidden treasures. While they might not all be household names, each one solves specific problems elegantly and efficiently. By incorporating them into your toolkit, you can write cleaner, more maintainable code while saving valuable development time.
+
+What’s your favorite underrated Python library? Share your experiences and discoveries in the comments below!
+
+---
+
+_Follow me for more Python tips and tricks, and don’t forget to clap if you found this article helpful!_
+
+[**Md Arman Hossen - Medium\***Read writing from Md Arman Hossen on Medium. Aspiring Software Engineer | Data Science | ML | Big Data | Blogger. @…\*armanruet.medium.com](https://armanruet.medium.com/)
