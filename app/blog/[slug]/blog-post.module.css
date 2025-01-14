@@ -36,31 +36,42 @@
   @apply prose-p:text-justify prose-p:text-lg prose-p:leading-relaxed;
   @apply prose-p:text-[#4B5563] dark:prose-p:text-[#D1D5DB];
   @apply prose-p:mb-6;
+
+  /* Strong/Bold */
+  @apply prose-strong:font-semibold;
+  @apply prose-strong:text-[#111827] dark:prose-strong:text-white;
+
+  /* Links */
+  @apply prose-a:text-[#3B82F6] dark:prose-a:text-[#60A5FA];
+  @apply prose-a:no-underline hover:prose-a:underline;
+  @apply prose-a:font-normal;
+
+  /* Lists */
+  @apply prose-ul:my-6 prose-li:text-base prose-li:mb-2;
+  @apply prose-li:text-[#4B5563] dark:prose-li:text-[#D1D5DB];
 }
 
 /* Selection styles properly scoped */
-.content p::selection {
-  @apply bg-blue-500/20 text-[#111827] dark:text-white;
-}
-
-.content p::-moz-selection {
-  @apply bg-blue-500/20 text-[#111827] dark:text-white;
-}
-
-.content::selection {
-  @apply bg-blue-500/20 text-[#111827] dark:text-white;
-}
-
-.content::-moz-selection {
-  @apply bg-blue-500/20 text-[#111827] dark:text-white;
-}
-
+.content p::selection,
+.content h1::selection,
+.content h2::selection,
+.content h3::selection,
+.content h4::selection,
+.content h5::selection,
+.content h6::selection,
 .content li::selection,
 .content ul::selection,
 .content ol::selection {
   @apply bg-blue-500/20 text-[#111827] dark:text-white;
 }
 
+.content p::-moz-selection,
+.content h1::-moz-selection,
+.content h2::-moz-selection,
+.content h3::-moz-selection,
+.content h4::-moz-selection,
+.content h5::-moz-selection,
+.content h6::-moz-selection,
 .content li::-moz-selection,
 .content ul::-moz-selection,
 .content ol::-moz-selection {
@@ -70,27 +81,6 @@
 .content li::marker {
   @apply text-[#6B7280] dark:text-[#9CA3AF];
 }
-
-.content li::marker::selection {
-  @apply bg-blue-500/20 text-[#6B7280] dark:text-[#9CA3AF];
-}
-
-.content li::marker::-moz-selection {
-  @apply bg-blue-500/20 text-[#6B7280] dark:text-[#9CA3AF];
-}
-
-/* Strong/Bold */
-@apply prose-strong:font-semibold;
-@apply prose-strong:text-[#111827] dark:prose-strong:text-white;
-
-/* Links */
-@apply prose-a:text-[#3B82F6] dark:prose-a:text-[#60A5FA];
-@apply prose-a:no-underline hover:prose-a:underline;
-@apply prose-a:font-normal;
-
-/* Lists */
-@apply prose-ul:my-6 prose-li:text-base prose-li:mb-2;
-@apply prose-li:text-[#4B5563] dark:prose-li:text-[#D1D5DB];
 
 /* Article Container */
 .article {
@@ -103,32 +93,26 @@
   @apply mb-16 text-center;
 }
 
-/* Article Meta */
-.meta {
-  @apply mt-6 flex items-center justify-center gap-4;
-  @apply text-[#6B7280] dark:text-[#9CA3AF] text-sm;
-}
-
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .title {
-    font-size: 2rem;          /* 32px */
+    font-size: 2rem;
   }
 
   .content {
-    font-size: 1rem;          /* 16px */
+    font-size: 1rem;
+  }
 
-    & h2 {
-      font-size: 1.5rem;        /* 24px */
-    }
+  .content h2 {
+    font-size: 1.5rem;
+  }
 
-    & h3 {
-      font-size: 1.25rem;       /* 20px */
-    }
+  .content h3 {
+    font-size: 1.25rem;
+  }
 
-    & blockquote {
-      font-size: 1.125rem;      /* 18px */
-    }
+  .content blockquote {
+    font-size: 1.125rem;
   }
 }
 
@@ -143,7 +127,7 @@
     font-size: 12pt;
   }
 
-  & a {
+  .content a {
     text-decoration: underline;
   }
-} 
+}
