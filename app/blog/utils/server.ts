@@ -1,8 +1,7 @@
 import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 import type { Options } from 'rehype-pretty-code';
-import type { CompileOptions } from '@mdx-js/mdx';
-import type { Root } from 'hast';
+import type { MDXRemoteProps } from 'next-mdx-remote';
 
 const prettyCodeOptions: Partial<Options> = {
   theme: 'github-dark',
@@ -10,20 +9,21 @@ const prettyCodeOptions: Partial<Options> = {
 };
 
 export async function getMDXContent(source: string) {
-  // Define rehype plugins with proper MDX types
-  const rehypePlugins: CompileOptions['rehypePlugins'] = [
-    // @ts-expect-error - Types are mismatched but runtime behavior is correct
-    [rehypePrettyCode, prettyCodeOptions]
-  ];
+  type MDXOptions = NonNullable<MDXRemoteProps['options']>;
+
+  const options: MDXOptions = {
+    mdxOptions: {
+      development: process.env.NODE_ENV === 'development',
+      format: 'mdx',
+      // Explicitly type the rehype plugins array
+      rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]] as MDXOptions['mdxOptions']['rehypePlugins'],
+      parseFrontmatter: true,
+    }
+  };
 
   const { content, frontmatter } = await compileMDX({
     source,
-    options: {
-      mdxOptions: {
-        rehypePlugins,
-        parseFrontmatter: true,
-      },
-    },
+    options,
   });
 
   return { content, frontmatter };
