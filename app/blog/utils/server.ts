@@ -1,8 +1,7 @@
 import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 import type { Options } from 'rehype-pretty-code';
-import type { Transformer } from 'unified';
-import type { Root } from 'hast';
+import type { RehypePlugin } from 'next-mdx-remote/rsc';
 
 const prettyCodeOptions: Partial<Options> = {
   theme: 'github-dark',
@@ -10,21 +9,12 @@ const prettyCodeOptions: Partial<Options> = {
 };
 
 export async function getMDXContent(source: string) {
-  // Create a properly typed transformer function
-  const rehypePrettyCodeTransformer = (options: Options): Transformer<Root> => {
-    return (tree) => {
-      return rehypePrettyCode(options)(tree) as Root;
-    };
-  };
-
-  const { content, frontmatter } = await compileMDX({
+  const { content, frontmatter } = await compileMDX<any>({
     source,
     options: {
       mdxOptions: {
-        // Use the transformer function directly
-        rehypePlugins: [
-          [rehypePrettyCodeTransformer, prettyCodeOptions]
-        ],
+        // Type assertion here is safe because we know the plugin structure
+        rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]] as RehypePlugin[],
         development: process.env.NODE_ENV === 'development',
       },
       parseFrontmatter: true,
