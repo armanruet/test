@@ -1,9 +1,9 @@
 import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
-import { Options } from 'rehype-pretty-code';
+import type { Options } from 'rehype-pretty-code';
+import type { CompileOptions } from '@mdx-js/mdx';
 
 const prettyCodeOptions: Partial<Options> = {
-  // Specify your rehype-pretty-code options here
   theme: 'github-dark',
   keepBackground: true,
 };
@@ -14,7 +14,7 @@ export async function getMDXContent(source: string) {
     options: {
       mdxOptions: {
         rehypePlugins: [
-          [rehypePrettyCode, prettyCodeOptions] as const,
+          [rehypePrettyCode, prettyCodeOptions] as unknown as CompileOptions['rehypePlugins'][number],
         ],
         parseFrontmatter: true,
       },
