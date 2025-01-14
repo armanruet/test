@@ -1,32 +1,31 @@
 import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 import type { Options } from 'rehype-pretty-code';
-import type { Plugin, Processor } from 'unified';
-import type { Root } from 'hast';
+import type { CompileOptions } from '@mdx-js/mdx';
+import type { Pluggable } from 'unified';
 
 const prettyCodeOptions: Partial<Options> = {
   theme: 'github-dark',
   keepBackground: true,
 };
 
-// Define the plugin type that matches MDX's expectations
-type UnifiedPlugin = Plugin<Array<Options | undefined>, Root>;
-type RehypePlugin = UnifiedPlugin | [UnifiedPlugin, Options];
-
 export async function getMDXContent(source: string) {
-  // Create a properly typed plugin configuration
-  const plugins: RehypePlugin[] = [
-    // @ts-expect-error - rehype-pretty-code types don't match exactly but work at runtime
-    [rehypePrettyCode, prettyCodeOptions]
+  // Create a properly typed rehype plugin configuration
+  const rehypePlugins: Pluggable[] = [
+    // Cast the plugin to Pluggable to match MDX's expected type
+    [rehypePrettyCode, prettyCodeOptions] as Pluggable
   ];
 
   const { content, frontmatter } = await compileMDX({
     source,
     options: {
       mdxOptions: {
-        rehypePlugins: plugins,
-        parseFrontmatter: true,
+        rehypePlugins,
+        format: 'mdx',
+        development: process.env.NODE_ENV === 'development',
+        jsx: true,
       },
+      parseFrontmatter: true,
     },
   });
 
