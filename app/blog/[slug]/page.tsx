@@ -25,7 +25,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   const { content, metadata } = await getPostFromSlug(params.slug);
 
   return (
-    <article className={`${styles.root} mx-auto max-w-[900px] px-4 py-12`}>
+    <article className="mx-auto max-w-[900px] px-4 py-12">
       <header className="mb-24">
         <h1 className={styles.title}>
           {metadata.title}
