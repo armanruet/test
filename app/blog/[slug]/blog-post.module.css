@@ -1,0 +1,161 @@
+/* Base styles and variables */
+:root {
+  --body-color: #4f4f4f;
+  --heading-color: #292929;
+  --meta-color: #666;
+  --link-color: #0d6efd;
+  --font-main: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+/* Container width control */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Main title styling */
+.title {
+  @apply text-[48px] font-black text-center leading-[1.1] mb-16 tracking-tight;
+  @apply text-[#111827] dark:text-white;
+}
+
+/* Meta information */
+.meta {
+  @apply mt-6 flex items-center justify-center gap-4;
+  @apply text-[#6B7280] dark:text-[#9CA3AF] text-sm;
+}
+
+.meta-item {
+  @apply inline-flex items-center gap-2;
+}
+
+/* Body text styling */
+.content {
+  @apply prose prose-lg mx-auto max-w-none;
+  
+  /* Headings */
+  @apply prose-headings:text-left prose-headings:font-bold;
+  @apply prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl;
+  @apply prose-headings:text-[#111827] dark:prose-headings:text-white;
+  @apply prose-h2:border-b prose-h2:border-[#E5E7EB] dark:prose-h2:border-[#374151];
+  @apply prose-h2:pb-2 prose-h2:mb-4;
+  
+  /* Paragraphs */
+  @apply prose-p:text-justify prose-p:text-lg prose-p:leading-relaxed;
+  @apply prose-p:text-[#4B5563] dark:prose-p:text-[#D1D5DB];
+  @apply prose-p:mb-6;
+  
+  /* Selection Colors */
+  & p::selection {
+    @apply bg-blue-500/20 text-[#111827] dark:text-white;
+  }
+  
+  & p::-moz-selection {
+    @apply bg-blue-500/20 text-[#111827] dark:text-white;
+  }
+
+  /* Global Selection Colors */
+  &::selection {
+    @apply bg-blue-500/20 text-[#111827] dark:text-white;
+  }
+  
+  &::-moz-selection {
+    @apply bg-blue-500/20 text-[#111827] dark:text-white;
+  }
+  
+  /* Strong/Bold */
+  @apply prose-strong:font-semibold;
+  @apply prose-strong:text-[#111827] dark:prose-strong:text-white;
+  
+  /* Links */
+  @apply prose-a:text-[#3B82F6] dark:prose-a:text-[#60A5FA];
+  @apply prose-a:no-underline hover:prose-a:underline;
+  @apply prose-a:font-normal;
+  
+  /* Lists */
+  @apply prose-ul:my-6 prose-li:text-base prose-li:mb-2;
+  @apply prose-li:text-[#4B5563] dark:prose-li:text-[#D1D5DB];
+  
+  /* List Selection Colors */
+  & li::selection,
+  & ul::selection,
+  & ol::selection {
+    @apply bg-blue-500/20 text-[#111827] dark:text-white;
+  }
+
+  & li::-moz-selection,
+  & ul::-moz-selection,
+  & ol::-moz-selection {
+    @apply bg-blue-500/20 text-[#111827] dark:text-white;
+  }
+
+  /* List Marker Selection */
+  & li::marker {
+    @apply text-[#6B7280] dark:text-[#9CA3AF];
+  }
+
+  & li::marker::selection {
+    @apply bg-blue-500/20 text-[#6B7280] dark:text-[#9CA3AF];
+  }
+
+  & li::marker::-moz-selection {
+    @apply bg-blue-500/20 text-[#6B7280] dark:text-[#9CA3AF];
+  }
+}
+
+/* Article Container */
+.article {
+  @apply max-w-[900px] mx-auto px-4 py-12;
+  @apply bg-white dark:bg-[#111827];
+}
+
+/* Article Header */
+.header {
+  @apply mb-16 text-center;
+}
+
+/* Article Meta */
+.meta {
+  @apply mt-6 flex items-center justify-center gap-4;
+  @apply text-[#6B7280] dark:text-[#9CA3AF] text-sm;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;          /* 32px */
+  }
+
+  .content {
+    font-size: 1rem;          /* 16px */
+
+    & h2 {
+      font-size: 1.5rem;        /* 24px */
+    }
+
+    & h3 {
+      font-size: 1.25rem;       /* 20px */
+    }
+
+    & blockquote {
+      font-size: 1.125rem;      /* 18px */
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .content {
+    font-size: 12pt;
+  }
+
+  & a {
+    text-decoration: underline;
+  }
+} 

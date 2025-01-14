@@ -1,0 +1,98 @@
+/* Base Theme Colors */
+:root {
+  /* Light Mode */
+  --background-main: #FFFFFF;
+  --background-secondary: #F9FAFB;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --accent-primary: #3B82F6;
+  --accent-secondary: #60A5FA;
+  --border-color: #E5E7EB;
+  
+  /* Dark Mode */
+  --dark-background-main: #111827;
+  --dark-background-secondary: #1F2937;
+  --dark-text-primary: #FFFFFF;
+  --dark-text-secondary: #D1D5DB;
+  --dark-accent-primary: #60A5FA;
+  --dark-accent-secondary: #93C5FD;
+  --dark-border-color: #374151;
+}
+
+/* Global Styles */
+body {
+  @apply bg-white dark:bg-[#111827] text-[#4B5563] dark:text-[#D1D5DB];
+}
+
+/* Card Styles */
+.card {
+  @apply bg-[#F9FAFB] dark:bg-[#1F2937] 
+         border border-[#E5E7EB] dark:border-[#374151]
+         rounded-lg shadow-sm;
+}
+
+/* Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+  @apply text-[#111827] dark:text-white font-bold;
+}
+
+/* Link Styles */
+a {
+  @apply text-[#3B82F6] dark:text-[#60A5FA] 
+         hover:text-[#2563EB] dark:hover:text-[#93C5FD];
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-[#3B82F6] hover:bg-[#2563EB] 
+         text-white
+         border border-transparent
+         rounded-lg px-4 py-2
+         transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply bg-[#F9FAFB] dark:bg-[#1F2937]
+         text-[#4B5563] dark:text-[#D1D5DB]
+         border border-[#E5E7EB] dark:border-[#374151]
+         hover:bg-[#F3F4F6] dark:hover:bg-[#374151]
+         rounded-lg px-4 py-2
+         transition-colors duration-200;
+}
+
+/* Input Styles */
+input, textarea, select {
+  @apply bg-white dark:bg-[#1F2937]
+         text-[#111827] dark:text-[#D1D5DB]
+         border border-[#E5E7EB] dark:border-[#374151]
+         focus:ring-2 focus:ring-[#3B82F6] dark:focus:ring-[#60A5FA]
+         rounded-lg px-4 py-2;
+}
+
+/* Navigation Styles */
+nav {
+  @apply bg-white dark:bg-[#111827]
+         border-b border-[#E5E7EB] dark:border-[#374151];
+}
+
+/* Code Block Background */
+pre {
+  @apply bg-[#F9FAFB] dark:bg-[#1F2937]
+         border border-[#E5E7EB] dark:border-[#374151];
+}
+
+/* Table Styles */
+table {
+  @apply bg-white dark:bg-[#1F2937]
+         border-[#E5E7EB] dark:border-[#374151];
+}
+
+th {
+  @apply bg-[#F9FAFB] dark:bg-[#374151]
+         text-[#111827] dark:text-white;
+}
+
+td {
+  @apply border-[#E5E7EB] dark:border-[#374151]
+         text-[#4B5563] dark:text-[#D1D5DB];
+} 

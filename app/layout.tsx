@@ -1,4 +1,6 @@
 import '@fontsource/mukta';
+import '@fontsource/jetbrains-mono';
+import './styles/theme.css';
 import './tailwind.css';
 
 import Analytics from 'app/components/analytics/analytics';
@@ -22,10 +24,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/x-icon" href="/static/favicons/favicon.ico" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#111827" />
       </head>
       <body
-        className="bg-white text-black antialiased dark:bg-black dark:text-white"
+        className="min-h-screen bg-white dark:bg-[#111827] text-[#4B5563] dark:text-[#D1D5DB]"
         suppressHydrationWarning
       >
         <ThemeProvider

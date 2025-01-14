@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentPropsWithoutRef } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { PrismTheme } from 'react-syntax-highlighter';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;
 type ParagraphProps = ComponentPropsWithoutRef<'p'>;
@@ -13,6 +14,28 @@ type ListProps = ComponentPropsWithoutRef<'ol'>;
 type ListItemProps = ComponentPropsWithoutRef<'li'>;
 type AnchorProps = ComponentPropsWithoutRef<'a'>;
 type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>;
+
+// Custom VS Code-like theme
+const customTheme: PrismTheme = {
+  'pre[class*="language-"]': {
+    background: '#1E1E1E',
+    color: '#D4D4D4',
+  },
+  'code[class*="language-"]': {
+    color: '#D4D4D4',
+  },
+  comment: { color: '#6A9955' },
+  keyword: { color: '#569CD6' },
+  string: { color: '#CE9178' },
+  function: { color: '#DCDCAA' },
+  className: { color: '#4EC9B0' },
+  number: { color: '#B5CEA8' },
+  operator: { color: '#D4D4D4' },
+  punctuation: { color: '#D4D4D4' },
+  parameter: { color: '#9CDCFE' },
+  property: { color: '#9CDCFE' },
+  method: { color: '#DCDCAA' },
+};
 
 export const components = {
   Image,
@@ -80,6 +103,7 @@ export const components = {
     const match = /language-(\w+)/.exec(className || '');
     return !inline && match ? (
       <SyntaxHighlighter
+        style={customTheme}
         language={match[1]}
         PreTag="div"
         className={className}

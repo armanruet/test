@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
+import rehypePrettyCode from 'rehype-pretty-code';
 
 function calculateReadingTime(content: string): number {
   const wordsPerMinute = 200; // Average reading speed
@@ -77,6 +78,30 @@ export function getTagsWithCount(posts: BlogPost[]): { name: string; count: numb
     .sort((a, b) => b.count - a.count);
 }
 
+const prettyCodeOptions = {
+  theme: {
+    light: 'github-light',
+    dark: 'github-dark'
+  },
+  keepBackground: false,
+  defaultLang: 'plaintext',
+  fontFamily: 'JetBrains Mono',
+  onVisitLine(node: any) {
+    if (node.children.length === 0) {
+      node.children = [{
+        type: 'text',
+        value: ' '
+      }];
+    }
+  },
+  onVisitHighlightedLine(node: any) {
+    node.properties.className = ['line', 'highlighted'];
+  },
+  onVisitHighlightedWord(node: any) {
+    node.properties.className = ['word'];
+  },
+};
+
 export async function getPostFromSlug(slug: string) {
   try {
     const postsDirectory = path.join(process.cwd(), 'app/blog/posts');
@@ -90,11 +115,14 @@ export async function getPostFromSlug(slug: string) {
     const { data, content } = matter(source);
     const readingTime = calculateReadingTime(content);
 
-    const tags = Array.isArray(data.tags)
-      ? data.tags.map((tag: string) => tag.toString().trim().toUpperCase())
-      : data.tags?.split(',').map((tag: string) => tag.trim().toUpperCase()) || [];
-
-    const mdxSource = await serialize(content);
+    const mdxSource = await serialize(content, {
+      mdxOptions: {
+        rehypePlugins: [
+          [rehypePrettyCode, prettyCodeOptions]
+        ],
+      },
+      parseFrontmatter: true,
+    });
 
     return {
       content: mdxSource,
@@ -102,7 +130,9 @@ export async function getPostFromSlug(slug: string) {
         title: data.title || '',
         date: data.publishedAt || data.date || '',
         description: data.summary || data.description || '',
-        tags,
+        tags: Array.isArray(data.tags)
+          ? data.tags.map((tag: string) => tag.toString().trim().toUpperCase())
+          : data.tags?.split(',').map((tag: string) => tag.trim().toUpperCase()) || [],
         readingTime,
         draft: data.draft || false,
         image: data.image || null,
