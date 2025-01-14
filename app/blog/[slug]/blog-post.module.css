@@ -36,64 +36,61 @@
   @apply prose-p:text-justify prose-p:text-lg prose-p:leading-relaxed;
   @apply prose-p:text-[#4B5563] dark:prose-p:text-[#D1D5DB];
   @apply prose-p:mb-6;
-  
-  /* Selection Colors */
-  & p::selection {
-    @apply bg-blue-500/20 text-[#111827] dark:text-white;
-  }
-  
-  & p::-moz-selection {
-    @apply bg-blue-500/20 text-[#111827] dark:text-white;
-  }
-
-  /* Global Selection Colors */
-  &::selection {
-    @apply bg-blue-500/20 text-[#111827] dark:text-white;
-  }
-  
-  &::-moz-selection {
-    @apply bg-blue-500/20 text-[#111827] dark:text-white;
-  }
-  
-  /* Strong/Bold */
-  @apply prose-strong:font-semibold;
-  @apply prose-strong:text-[#111827] dark:prose-strong:text-white;
-  
-  /* Links */
-  @apply prose-a:text-[#3B82F6] dark:prose-a:text-[#60A5FA];
-  @apply prose-a:no-underline hover:prose-a:underline;
-  @apply prose-a:font-normal;
-  
-  /* Lists */
-  @apply prose-ul:my-6 prose-li:text-base prose-li:mb-2;
-  @apply prose-li:text-[#4B5563] dark:prose-li:text-[#D1D5DB];
-  
-  /* List Selection Colors */
-  & li::selection,
-  & ul::selection,
-  & ol::selection {
-    @apply bg-blue-500/20 text-[#111827] dark:text-white;
-  }
-
-  & li::-moz-selection,
-  & ul::-moz-selection,
-  & ol::-moz-selection {
-    @apply bg-blue-500/20 text-[#111827] dark:text-white;
-  }
-
-  /* List Marker Selection */
-  & li::marker {
-    @apply text-[#6B7280] dark:text-[#9CA3AF];
-  }
-
-  & li::marker::selection {
-    @apply bg-blue-500/20 text-[#6B7280] dark:text-[#9CA3AF];
-  }
-
-  & li::marker::-moz-selection {
-    @apply bg-blue-500/20 text-[#6B7280] dark:text-[#9CA3AF];
-  }
 }
+
+/* Selection styles properly scoped */
+.content p::selection {
+  @apply bg-blue-500/20 text-[#111827] dark:text-white;
+}
+
+.content p::-moz-selection {
+  @apply bg-blue-500/20 text-[#111827] dark:text-white;
+}
+
+.content::selection {
+  @apply bg-blue-500/20 text-[#111827] dark:text-white;
+}
+
+.content::-moz-selection {
+  @apply bg-blue-500/20 text-[#111827] dark:text-white;
+}
+
+.content li::selection,
+.content ul::selection,
+.content ol::selection {
+  @apply bg-blue-500/20 text-[#111827] dark:text-white;
+}
+
+.content li::-moz-selection,
+.content ul::-moz-selection,
+.content ol::-moz-selection {
+  @apply bg-blue-500/20 text-[#111827] dark:text-white;
+}
+
+.content li::marker {
+  @apply text-[#6B7280] dark:text-[#9CA3AF];
+}
+
+.content li::marker::selection {
+  @apply bg-blue-500/20 text-[#6B7280] dark:text-[#9CA3AF];
+}
+
+.content li::marker::-moz-selection {
+  @apply bg-blue-500/20 text-[#6B7280] dark:text-[#9CA3AF];
+}
+
+/* Strong/Bold */
+@apply prose-strong:font-semibold;
+@apply prose-strong:text-[#111827] dark:prose-strong:text-white;
+
+/* Links */
+@apply prose-a:text-[#3B82F6] dark:prose-a:text-[#60A5FA];
+@apply prose-a:no-underline hover:prose-a:underline;
+@apply prose-a:font-normal;
+
+/* Lists */
+@apply prose-ul:my-6 prose-li:text-base prose-li:mb-2;
+@apply prose-li:text-[#4B5563] dark:prose-li:text-[#D1D5DB];
 
 /* Article Container */
 .article {
