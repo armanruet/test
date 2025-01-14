@@ -2,7 +2,8 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 import type { Options } from 'rehype-pretty-code';
 import type { MDXRemoteProps } from 'next-mdx-remote';
-import type { Pluggable } from 'unified';
+import type { Pluggable, Plugin, Transformer } from 'unified';
+import type { Root } from 'hast';
 
 const prettyCodeOptions: Partial<Options> = {
   theme: 'github-dark',
@@ -12,8 +13,8 @@ const prettyCodeOptions: Partial<Options> = {
 export async function getMDXContent(source: string) {
   type MDXOptions = NonNullable<MDXRemoteProps['options']>;
   
-  const rehypePlugins: MDXOptions['mdxOptions']['rehypePlugins'] = [
-    [rehypePrettyCode, prettyCodeOptions] as Pluggable
+  const rehypePlugins: Array<[Plugin<[Options?], Root, Root>, Options?]> = [
+    [rehypePrettyCode, prettyCodeOptions]
   ];
 
   const { content, frontmatter } = await compileMDX({
